@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private void Awake()
     {
-        
-        if(GameManager.instance!=null)
+
+        if (GameManager.instance != null)
         {
             Destroy(gameObject);
             return;
@@ -28,12 +28,25 @@ public class GameManager : MonoBehaviour
 
     //refrence to various game objects like player npsc etc
     public PlayerMovement player;
-    //weapon script reftrence;
+
+
+    //weapon script reftrence to text ;
+    public FloatingTextManager floatingTextManager;
 
 
     //tracking variables
     public int money;
     public int experience;
+
+
+
+
+    ///Common place to show message
+    public void ShowText(string msg,int fontSize,Color color ,Vector3 position, Vector3 motion,float duration)
+    {
+        floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+    }
+
 
     //function to save the game data
     public void SaveState()

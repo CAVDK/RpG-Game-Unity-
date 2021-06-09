@@ -35,6 +35,6 @@ public class Collidable : MonoBehaviour
 
     protected  virtual void OnCollide(Collider2D coll)
     {
-        Debug.Log(coll.name);
+        Debug.Log( " On collided was not over written here i.e in  "+ this.name);
     }
 }
