@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Collactable : Collidable
 {
-    protected bool collected;
+    protected bool collected = false;
 
     protected override void OnCollide(Collider2D coll)
     {
