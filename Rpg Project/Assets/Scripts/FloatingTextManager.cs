@@ -23,6 +23,10 @@ public class FloatingTextManager : MonoBehaviour
     public void Show(string msg,int fontSize,Color color,Vector3 position,Vector3 motion,float duration)
     {
         FloatingText floatingText = GetFloatingText();
+        if(!floatingText.active)
+        {
+            floatingText.active = true;
+        }
         floatingText._text.text = msg;
         floatingText._text.fontSize = fontSize;
         floatingText._text.color = color;

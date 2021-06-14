@@ -15,11 +15,13 @@ public class Weapon :Collidable
     //weapomn attack - swing
     private float weapon_coolDown =0.5f;
     private float lastSwing;
+    private Animator animator;
 
     protected override void Start()
     {
         base.Start();
         spriteRendere = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -38,6 +40,8 @@ public class Weapon :Collidable
     private void Swing()
     {
         Debug.Log("Swing");
+        animator.SetTrigger("swing");
+
     }
 
     protected override void OnCollide(Collider2D coll)

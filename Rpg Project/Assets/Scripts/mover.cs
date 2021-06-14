@@ -32,10 +32,13 @@ public  abstract class mover : Fighter
         Inputs();
         
     }
-    protected virtual void UpdateMotor(Vector3 input)
+
+
+
+    protected virtual void UpdateMotor(Vector3 input1)
     {
 
-        moveDir = input;
+        moveDir = input1;
         //SpriteFlipper();
         if (moveDir.x > 0)
         {
@@ -46,8 +49,15 @@ public  abstract class mover : Fighter
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
+        //add push direction if any
+        moveDelata += pushDirection;
 
-        moveDir.Normalize();//to counter diagonal movement
+        //reduce the pushForce too so that the enemydoes not sit in the corner forever
+        pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
+
+
+
+      //  moveDir.Normalize();//to counter diagonal movement
 
         ///we check weather we can move movedir.y*time.delta timnes distance at that particualr frame when we are pressing the ip
         ///1st argumnent-position to cast from,2nd arg - size of the collider,3rd arg - Angle
@@ -88,19 +98,5 @@ public  abstract class mover : Fighter
     }
 
 
-    /// <summary>
-    /// use to flip the sprite in right left direction
-    /// </summary>
-    private void SpriteFlipper()
-    {
-        
-    }
-
-    private void Movement()
-    {
-        
-
-
-    }
-
+    
 }

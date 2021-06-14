@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     //tracking variables
     public int money;
     public int experience;
-
+    
 
 
 

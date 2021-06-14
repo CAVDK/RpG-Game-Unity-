@@ -23,7 +23,7 @@ public class Fighter : MonoBehaviour
             hitpoint -= dmg.damageAmount;
             pushDirection = (transform.position - dmg.attackOrigin).normalized * dmg.pushForce;
             Debug.Log("Hit in  middle");
-            GameManager.instance.ShowText(dmg.damageAmount.ToString() +"  I Hit", 30, Color.yellow, transform.position, Vector3.up *30f , 1f);
+            GameManager.instance.ShowText(dmg.damageAmount.ToString() +"  I Hit", 30, Color.yellow, transform.position, Vector3.up *20f , 1.0f);
 
             if(hitpoint<=0)
             {
