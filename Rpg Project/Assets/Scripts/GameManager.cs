@@ -46,9 +46,13 @@ public class GameManager : MonoBehaviour
     //tracking variables
     public int money;
     public int experience;
-    
 
 
+
+    private void Update()
+    {
+       Debug.Log( GetCurrentLevel());   
+    }
 
     ///Common place to show message
     public void ShowText(string msg,int fontSize,Color color ,Vector3 position, Vector3 motion,float duration)
@@ -69,6 +73,51 @@ public class GameManager : MonoBehaviour
         }
         return false;
 
+    }
+
+
+    public int GetCurrentLevel()
+    {
+        int r = 0;
+        int add = 0;
+        while(experience>=add)
+        {
+            add += xpTable[r];
+            
+            r++;
+            if (r == xpTable.Count)
+                return r;
+        }
+        
+        return r;
+    }
+
+    public int GetXpToLevel(int level)
+    {
+        int r = 0;
+        int xp = 0;
+        while(r<level)
+        {
+            xp += xpTable[r];
+            r++;
+        }
+        return xp;
+    }
+
+    public void Grantxp(int xp)
+    {
+        int currLevel = GetCurrentLevel();
+        experience += xp;
+        if(currLevel <GetCurrentLevel())
+        {
+            OnLevelUp();
+        }
+    }
+
+    public void OnLevelUp()
+    {
+        Debug.Log("Level Up");
+        player.OnLevelUp();
     }
 
 
@@ -100,10 +149,14 @@ public class GameManager : MonoBehaviour
         string[] data = PlayerPrefs.GetString("saveData").Split('|');
         money = int.Parse(data[1]);
         experience = int.Parse(data[2]);
+        if(GetCurrentLevel() !=1)
+        player.SetLevel(GetCurrentLevel());
        
         _weapon.SetWeaponLevel(int.Parse(data[3]));
 
     }
+
+
 
 
 

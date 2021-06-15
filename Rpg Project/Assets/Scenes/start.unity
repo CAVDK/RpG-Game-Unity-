@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 251303916}
   - component: {fileID: 251303915}
   m_Layer: 5
-  m_Name: Button
+  m_Name: LeftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,7 +573,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 251303916}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1524393439}
+        m_MethodName: OnArrowclick
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &251303916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,7 +635,7 @@ GameObject:
   - component: {fileID: 275106304}
   - component: {fileID: 275106303}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: rightbutton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,7 +703,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 275106304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1524393439}
+        m_MethodName: OnArrowclick
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &275106304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,7 +1500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec10253631b27245bb3f96e1d5c4b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSprites: []
+  playerSprites:
+  - {fileID: -3333287543173532273, guid: 9be2b83a6d7787b4f8fcf59f2139a67a, type: 3}
+  - {fileID: -2485803791871170643, guid: 9be2b83a6d7787b4f8fcf59f2139a67a, type: 3}
   weaponSprites:
   - {fileID: -7002750688242986441, guid: f705cf3734179f74cbb1c3310eb3048f, type: 3}
   - {fileID: -6669938079736194787, guid: f705cf3734179f74cbb1c3310eb3048f, type: 3}
@@ -1489,7 +1513,7 @@ MonoBehaviour:
   - {fileID: 3564353969060269130, guid: f705cf3734179f74cbb1c3310eb3048f, type: 3}
   - {fileID: 3631438938564002788, guid: f705cf3734179f74cbb1c3310eb3048f, type: 3}
   weaponPrices: 1e0000004600000082000000c80000002c0100009001000058020000
-  xpTable: 
+  xpTable: 050000000a000000140000002800000050000000a0000000c8000000fa0000002c01000090010000
   player: {fileID: 1235067110}
   _weapon: {fileID: 1356279375}
   floatingTextManager: {fileID: 1695619647}
@@ -1842,8 +1866,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1a358b6cef3154cbaedd18c30847d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 10
-  maxHitpoint: 10
+  hitpoint: 5
+  maxHitpoint: 5
   pushRecoverySpeed: 0.2
 --- !u!61 &1235067111
 BoxCollider2D:

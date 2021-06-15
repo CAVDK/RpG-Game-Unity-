@@ -10,7 +10,7 @@ public class CharacterMenu : MonoBehaviour
     public Image charcaterSelectionSprite;
     public Image weapSprite;
     public RectTransform xpBar;
-
+    
     //logic
     private int currentCharacterSelection = 0;
 
@@ -46,6 +46,7 @@ public class CharacterMenu : MonoBehaviour
     private void OnSelectionChange()
     {
         charcaterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
+        GameManager.instance.player.SwapSprite(currentCharacterSelection);
     }
 
 
@@ -74,11 +75,30 @@ public class CharacterMenu : MonoBehaviour
         //meta
         hitPointText.text = GameManager.instance.player.hitpoint.ToString();
         moneyText.text = GameManager.instance.money.ToString();
-        levlText.text = "NOT IMPLEMENTE";
+        levlText.text = GameManager.instance.GetCurrentLevel().ToString();
+        int currentLevel = GameManager.instance.GetCurrentLevel();
+
 
         //XP BAR
-        xpText.text = "nOT IMPLEMENTED";
-        xpBar.localScale = new Vector3(0.5f, 0f, 0f);
+        if (currentLevel ==  GameManager.instance.xpTable.Count)
+        {
+            xpText.text = GameManager.instance.experience.ToString() + "total exp points";
+            xpBar.localScale = Vector3.one;
+        }
+        else
+        {
+            int prevLevelXp = GameManager.instance.GetXpToLevel(currentLevel-1);
+            int currLevelXp = GameManager.instance.GetXpToLevel(currentLevel);
+            int diff = currLevelXp - prevLevelXp;
+            int currXpIntoLevel = GameManager.instance.experience - prevLevelXp;
+
+            float completionRatio = (float)currXpIntoLevel / (float)diff;
+            xpBar.localScale = new Vector3(completionRatio, 1f, 1f);
+            xpText.text = currXpIntoLevel.ToString() + "/" + diff;
+
+        }
+
+
 
         
     }
