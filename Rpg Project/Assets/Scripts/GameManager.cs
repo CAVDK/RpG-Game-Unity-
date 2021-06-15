@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     //refrence to various game objects like player npsc etc
     public PlayerMovement player;
+    public Weapon _weapon;
 
 
     //weapon script reftrence to text ;
@@ -55,6 +56,21 @@ public class GameManager : MonoBehaviour
         floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
     }
 
+    public bool TryUpgradeWeapon()
+    {
+        //is weapon level max
+        if (weaponPrices.Count <= _weapon.weaponLevel) return false;
+
+        if(money>=weaponPrices[_weapon.weaponLevel])
+        {
+            money -= weaponPrices[_weapon.weaponLevel];
+            _weapon.UpGradeWeapon();
+            return true;
+        }
+        return false;
+
+    }
+
 
     //function to save the game data
     public void SaveState()
@@ -65,7 +81,7 @@ public class GameManager : MonoBehaviour
         save_data += "0" + "|";
         save_data += money.ToString() + "|";
         save_data += experience.ToString() + "|";
-        save_data += "0";
+        save_data += _weapon.weaponLevel.ToString();
 
         PlayerPrefs.SetString("saveData", save_data);
     }
@@ -84,6 +100,9 @@ public class GameManager : MonoBehaviour
         string[] data = PlayerPrefs.GetString("saveData").Split('|');
         money = int.Parse(data[1]);
         experience = int.Parse(data[2]);
+       
+        _weapon.SetWeaponLevel(int.Parse(data[3]));
+
     }
 
 

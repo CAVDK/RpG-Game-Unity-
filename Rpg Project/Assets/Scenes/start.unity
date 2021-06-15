@@ -166,7 +166,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.008240648}
+  m_Offset: {x: 0, y: -0.009873055}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -177,7 +177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09, y: 0.1328517}
+  m_Size: {x: 0.098161995, y: 0.13611652}
   m_EdgeRadius: 0
 --- !u!114 &58295742
 MonoBehaviour:
@@ -239,7 +239,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0019712746, y: 0.0067587197}
+  m_Offset: {x: 0.0003388673, y: -0.0005870536}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -250,7 +250,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09072322, y: 0.094665796}
+  m_Size: {x: 0.09888521, y: 0.11588697}
   m_EdgeRadius: 0
 --- !u!212 &69139614
 SpriteRenderer:
@@ -1488,9 +1488,10 @@ MonoBehaviour:
   - {fileID: 2070024908057003040, guid: f705cf3734179f74cbb1c3310eb3048f, type: 3}
   - {fileID: 3564353969060269130, guid: f705cf3734179f74cbb1c3310eb3048f, type: 3}
   - {fileID: 3631438938564002788, guid: f705cf3734179f74cbb1c3310eb3048f, type: 3}
-  weaponPrices: 
+  weaponPrices: 1e0000004600000082000000c80000002c0100009001000058020000
   xpTable: 
   player: {fileID: 1235067110}
+  _weapon: {fileID: 1356279375}
   floatingTextManager: {fileID: 1695619647}
   money: 10
   experience: 0
@@ -1857,7 +1858,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010120526, y: -0.025871545}
+  m_Offset: {x: 0.0083899535, y: -0.025871545}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1868,7 +1869,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09440033, y: 0.13039793}
+  m_Size: {x: 0.10132263, y: 0.13039793}
   m_EdgeRadius: 0
 --- !u!212 &1235067112
 SpriteRenderer:
@@ -2142,7 +2143,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1325199277}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1524393439}
+        m_MethodName: OnClickUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1325199277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2316,8 +2328,16 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  damagePoint: 2
-  pushBackForce: 3
+  damagePoint: 0100000002000000030000000400000005000000060000000700000008000000
+  pushBackForce:
+  - 3
+  - 3.3
+  - 3.6
+  - 3.9
+  - 4
+  - 4.3
+  - 4.5
+  - 5
   weaponLevel: 0
 --- !u!61 &1356279376
 BoxCollider2D:
@@ -12726,7 +12746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 26.470001}
+  m_AnchoredPosition: {x: 0, y: 11.47}
   m_SizeDelta: {x: 51.181335, y: 152.06042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1754442928
@@ -16218,6 +16238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121751511733858862, guid: cd9a4ea5be93eed498ac9c5e2aa9c2ea,
+        type: 3}
+      propertyPath: moneyAmount
+      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd9a4ea5be93eed498ac9c5e2aa9c2ea, type: 3}
