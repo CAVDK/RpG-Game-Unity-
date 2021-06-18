@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Portal : Collidable
 {
 
-    public string[] sceneName;
+    public string  sceneName;
 
     protected override void OnCollide(Collider2D coll)
     {
@@ -14,8 +14,8 @@ public class Portal : Collidable
         {
             //pick a random dngon to spawn 
             GameManager.instance.SaveState();
-            string _sceneToLoad = sceneName[Random.Range(0, sceneName.Length)];
-            SceneManager.LoadScene(_sceneToLoad);
+            
+            SceneManager.LoadScene(sceneName);
 
         }
     }

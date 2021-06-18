@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
         {
             
             Destroy(gameObject);
+            Destroy(player.gameObject);
+            Destroy(floatingTextManager.gameObject);
+
+
             return;
 
         }
@@ -153,8 +157,11 @@ public class GameManager : MonoBehaviour
         player.SetLevel(GetCurrentLevel());
        
         _weapon.SetWeaponLevel(int.Parse(data[3]));
+        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
 
     }
+
+
 
 
 

@@ -10,6 +10,7 @@ public class PlayerMovement : mover
     {
         base.Start();
         spriteRendere = GetComponent<SpriteRenderer>();
+        DontDestroyOnLoad(gameObject);
     }
     private void Update()
     {
@@ -38,4 +39,20 @@ public class PlayerMovement : mover
             OnLevelUp();
         }
     }
+
+    public void Heal(int Healing_amoint)
+    {
+        if (hitpoint == maxHitpoint) return;
+
+        hitpoint += Healing_amoint;
+        if (hitpoint>maxHitpoint)
+        {
+            hitpoint = maxHitpoint;
+        }
+       
+       
+            GameManager.instance.ShowText("+" + Healing_amoint.ToString() + "hp", 20, Color.green, transform.position, Vector3.up * 40, 1.0f);
+    }
+
+
 }

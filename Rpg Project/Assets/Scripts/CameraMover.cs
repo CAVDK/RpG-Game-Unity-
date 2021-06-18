@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
-    public Transform player_Position;
+    private Transform player_Position;
     //what the difference should be between player and camers center before moving the camera
     public float boundX = 0.15f;
     public float boundY = 0.05f;
 
+
+
+    private void Start()
+    {
+        player_Position = GameObject.Find("Player").transform;
+    }
 
     /// <summary>
     /// we are using late update because we want the camera to move after the player have been moved
