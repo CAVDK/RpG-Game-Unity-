@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             Destroy(player.gameObject);
             Destroy(floatingTextManager.gameObject);
+            Destroy(HUD.gameObject);
+            Destroy(menu.gameObject);
 
 
             return;
@@ -23,8 +25,9 @@ public class GameManager : MonoBehaviour
         //else
         //{
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
             SceneManager.sceneLoaded += LoadData;
+        SceneManager.sceneLoaded += OnSceanLoaded;
         //}
         
        // SceneManager.sceneLoaded += LoadData;
@@ -41,10 +44,15 @@ public class GameManager : MonoBehaviour
     //refrence to various game objects like player npsc etc
     public PlayerMovement player;
     public Weapon _weapon;
+    public GameObject HUD;
+    public GameObject menu;
+    public Animator deathMenuAnimator;
+
 
 
     //weapon script reftrence to text ;
     public FloatingTextManager floatingTextManager;
+    public RectTransform hitPointBar;
 
 
     //tracking variables
@@ -122,6 +130,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Level Up");
         player.OnLevelUp();
+        OnHitPointChange();
     }
 
 
@@ -142,13 +151,15 @@ public class GameManager : MonoBehaviour
     //function to Load the data from the game when you open
     public void LoadData( Scene s ,LoadSceneMode mode)
     {
-        Debug.Log("load data");
-        //SceneManager.sceneLoaded -= LoadData;
-
+       // Debug.Log("load data");
+       
+        SceneManager.sceneLoaded -= LoadData;
+        //we only load the data once and then carry it throughout the sceans as we are using donot destroy on load
         if (!PlayerPrefs.HasKey("saveData"))//if we dont have a key in the game
         {
             return;
         }
+
 
         string[] data = PlayerPrefs.GetString("saveData").Split('|');
         money = int.Parse(data[1]);
@@ -157,11 +168,39 @@ public class GameManager : MonoBehaviour
         player.SetLevel(GetCurrentLevel());
        
         _weapon.SetWeaponLevel(int.Parse(data[3]));
-        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+        
 
     }
 
+    public void OnSceanLoaded(Scene s, LoadSceneMode mode)
+    {
+        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+    }
 
+    //hitpoint bar
+    public void OnHitPointChange()
+    {
+        float ratio = (float)player.hitpoint / (float)player.maxHitpoint;
+        hitPointBar.localScale = new Vector3(1, ratio, 1);
+    }
+
+
+    //repawn Death Menu
+    public void Respawn()
+    {
+        deathMenuAnimator.SetTrigger("hide");
+        PlayerPrefs.DeleteAll();
+        
+        player.PlayerRespawn();
+        money = 10;
+        experience = 0;
+        _weapon.SetWeaponLevel(0);
+        player.SetLevel(0);
+
+        SceneManager.LoadScene("start");
+        
+
+    }
 
 
 

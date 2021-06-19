@@ -6,17 +6,18 @@ public class PlayerMovement : mover
 {
 
     private SpriteRenderer spriteRendere;
+    private bool isAlive = true;
     protected override void Start()
     {
         base.Start();
         spriteRendere = GetComponent<SpriteRenderer>();
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
-    private void Update()
+    protected override void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-
+        if(isAlive)
         UpdateMotor(new Vector3(x, y, 0));
     }
 
@@ -49,9 +50,31 @@ public class PlayerMovement : mover
         {
             hitpoint = maxHitpoint;
         }
-       
-       
-            GameManager.instance.ShowText("+" + Healing_amoint.ToString() + "hp", 20, Color.green, transform.position, Vector3.up * 40, 1.0f);
+
+        GameManager.instance.OnHitPointChange();
+        GameManager.instance.ShowText("+" + Healing_amoint.ToString() + "hp", 20, Color.green, transform.position, Vector3.up * 40, 1.0f);
+    }
+
+    protected override void ReceiveDamage(Damage dmg)
+    {
+        if (!isAlive) return;
+
+        base.ReceiveDamage(dmg);
+        GameManager.instance.OnHitPointChange();
+    }
+
+    protected override void Death()
+    {
+        isAlive = false;
+        GameManager.instance.deathMenuAnimator.SetTrigger("show");
+        PlayerPrefs.DeleteAll();
+
+    }
+    public void PlayerRespawn()
+    {
+        Heal(maxHitpoint);
+        isAlive = true;
+        lastImmuneTime = Time.time;
     }
 
 

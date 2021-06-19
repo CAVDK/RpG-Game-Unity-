@@ -9,14 +9,15 @@ public  abstract class mover : Fighter
     protected BoxCollider2D _boxCollider;
      protected RaycastHit2D hit;
     protected Vector3 moveDelata;
+    private Vector3 original_size;
 
     //inputs
      protected Vector2 moveDir;
 
     //movement
     protected float speed = 1f;
-    protected float xSpeed = 1f;
-    protected float ySpeed = 0.75f;
+   public float xSpeed = 1f;
+    public float ySpeed = 0.75f;
 
 
     #endregion
@@ -26,10 +27,11 @@ public  abstract class mover : Fighter
     protected virtual void Start()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
+        original_size = transform.localScale;
     }
-    private void Update()
+    protected override void Update()
     {
-        Inputs();
+       //Inputs();
         
     }
 
@@ -42,11 +44,11 @@ public  abstract class mover : Fighter
         //SpriteFlipper();
         if (moveDir.x > 0)
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = original_size;
         }
         else if (moveDir.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-original_size.x, original_size.y,original_size.z);
         }
 
         //add push direction if any

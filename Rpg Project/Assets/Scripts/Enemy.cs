@@ -28,8 +28,9 @@ public class Enemy : mover
         startingPosition = transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
     }
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         //maxdistance the enemy can have between him and the player once the player goes x amount of distance away from the player it stops
         if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLenght)
         {

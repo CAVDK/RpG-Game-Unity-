@@ -29,6 +29,12 @@ TextureImporter:
   - first:
       213: 3631438938564002788
     second: sword_8
+  - first:
+      213: -2993962386161632568
+    second: BigEnemy
+  - first:
+      213: 5413567099213479140
+    second: fireBallEnemy
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -305,7 +311,7 @@ TextureImporter:
         width: 10
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -326,7 +332,7 @@ TextureImporter:
         width: 10
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -334,6 +340,48 @@ TextureImporter:
       bones: []
       spriteID: 4e301a47976756230800000000000000
       internalID: 3631438938564002788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigEnemy
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 47
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca74fd821f4376d0800000000000000
+      internalID: -2993962386161632568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireBallEnemy
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 30
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec7c5c289ad02b40800000000000000
+      internalID: 5413567099213479140
       vertices: []
       indices: 
       edges: []
